@@ -42,4 +42,16 @@ public class BookController {
     public ResponseEntity<Book> updateBookById(@RequestBody Book book, @PathVariable Long id) throws BookNotFoundException {
         return bookService.updateBook(book, id);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Object> deleteBookById(@PathVariable Long id) throws BookNotFoundException {
+        return bookService.deleteBookById(id);
+    }
+
+    @GetMapping("/name")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Book> listBooksThatStartsWith(@RequestParam String name) {
+        return bookService.listBooksThatStartsWith(name);
+    }
 }
